@@ -42,6 +42,14 @@ cp jx/bdd/boot-gke/jx-requirements.yml boot-source
 cp jx/bdd/boot-gke/parameters.yaml boot-source/env
 cd boot-source
 
+
+echo "Reqs file"
+cat jx-requirements.yml
+
+echo "Params file"
+cat parameters.yaml
+
+
 jx step bdd \
     --use-revision \
     --version-repo-pr \
