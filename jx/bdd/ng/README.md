@@ -1,1 +1,0 @@
-## BDD test for the NG flag

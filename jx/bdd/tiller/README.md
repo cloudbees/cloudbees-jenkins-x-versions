@@ -1,1 +1,0 @@
-## BDD test for static jenkins server with Tiller
