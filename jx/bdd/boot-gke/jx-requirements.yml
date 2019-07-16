@@ -2,7 +2,7 @@ provider: gke
 secretStorage: local
 kaniko: true
 project: jenkins-x-bdd2
-clusterName: bdd-boot
+clusterName: bdd-gke
 zone: europe-west1-c
 environmentGitOwner: cb-kubecd
 environments:

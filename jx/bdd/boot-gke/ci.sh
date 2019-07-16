@@ -38,15 +38,15 @@ export JX_VALUE_PROW_HMACTOKEN="$GH_CREDS_PSW"
 export JX_BATCH_MODE="true"
 
 git clone https://github.com/cloudbees/cloudbees-jenkins-x-boot-config boot-source
-cp jx/bdd/boot-local/jx-requirements.yml boot-source
-cp jx/bdd/boot-local/parameters.yaml boot-source/env
+cp jx/bdd/boot-gke/jx-requirements.yml boot-source
+cp jx/bdd/boot-gke/parameters.yaml boot-source/env
 cd boot-source
 
 jx step bdd \
     --use-revision \
     --version-repo-pr \
     --versions-repo https://github.com/cloudbees/cloudbees-jenkins-x-versions.git \
-    --config ../jx/bdd/boot-local/cluster.yaml \
+    --config ../jx/bdd/boot-gke/cluster.yaml \
     --gopath /tmp --git-provider=github \
     --git-username $GH_USERNAME \
     --git-owner $GH_OWNER \
