@@ -55,5 +55,5 @@ jx step bdd \
     --no-delete-app \
     --no-delete-repo \
     --tests install \
-    --tests test-create-spring \ 
+    --tests test-create-spring \
     --tests test-import \
