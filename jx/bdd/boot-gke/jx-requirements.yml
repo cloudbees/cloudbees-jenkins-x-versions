@@ -1,10 +1,5 @@
-provider:
 secretStorage: local
 kaniko: true
-project: 
-clusterName:
-zone: 
-environmentGitOwner:
 environments:
   - key: dev
     owner: ""
