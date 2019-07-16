@@ -1,10 +1,10 @@
-provider: gke
+provider:
 secretStorage: local
 kaniko: true
-project: jenkins-x-bdd2
-clusterName: bdd-gke
-zone: europe-west1-c
-environmentGitOwner: cb-kubecd
+project: 
+clusterName:
+zone: 
+environmentGitOwner:
 environments:
   - key: dev
     owner: ""
