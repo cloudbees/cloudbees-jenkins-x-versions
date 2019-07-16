@@ -1,5 +1,10 @@
+provider: gke
 secretStorage: local
 kaniko: true
+project: jenkins-x-bdd2
+clusterName: boot-gke
+zone: europe-west1-c
+environmentGitOwner: cb-kubecd
 environments:
   - key: dev
     owner: ""
@@ -9,4 +14,4 @@ environments:
     repository: ""
   - key: production
     owner: ""
-    repository: ""
+repository: ""

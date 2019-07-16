@@ -37,7 +37,7 @@ export JX_VALUE_PROW_HMACTOKEN="$GH_CREDS_PSW"
 # TODO temporary hack until the batch mode in jx is fixed...
 export JX_BATCH_MODE="true"
 
-git clone https://github.com/cloudbees/cloudbees-jenkins-x-boot-config boot-source
+git clone https://github.com/jstrachan/environment-simple-tekton.git boot-source
 cp jx/bdd/boot-gke/jx-requirements.yml boot-source
 cp jx/bdd/boot-gke/parameters.yaml boot-source/env
 cd boot-source
