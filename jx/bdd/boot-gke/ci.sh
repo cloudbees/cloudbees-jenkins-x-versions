@@ -37,7 +37,7 @@ export JX_VALUE_PROW_HMACTOKEN="$GH_CREDS_PSW"
 # TODO temporary hack until the batch mode in jx is fixed...
 export JX_BATCH_MODE="true"
 
-git clone https://github.com/cloudbees/cloudbees-jenkins-x-boot-config boot-source
+git clone https://github.com/abayer/cloudbees-jenkins-x-boot-config boot-source
 cp jx/bdd/boot-gke/jx-requirements.yml boot-source
 cp jx/bdd/boot-gke/parameters.yaml boot-source/env
 cd boot-source
@@ -46,9 +46,7 @@ helm init --client-only
 helm repo add jenkins-x https://storage.googleapis.com/chartmuseum.jenkins-x.io
 
 jx step bdd \
-    --use-revision \
-    --version-repo-pr \
-    --versions-repo https://github.com/cloudbees/cloudbees-jenkins-x-versions.git \
+    --versions-repo https://github.com/abayer/cloudbees-jenkins-x-versions.git \
     --config ../jx/bdd/boot-gke/cluster.yaml \
     --gopath /tmp --git-provider=github \
     --git-username $GH_USERNAME \
