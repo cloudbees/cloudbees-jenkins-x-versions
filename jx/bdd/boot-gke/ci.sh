@@ -47,6 +47,7 @@ helm init --client-only
 helm repo add jenkins-x https://storage.googleapis.com/chartmuseum.jenkins-x.io
 
 jx step bdd \
+    --test-git-repo=https://github.com/abayer/bdd-jx.git \
     --versions-repo https://github.com/abayer/cloudbees-jenkins-x-versions.git \
     --config ../jx/bdd/boot-gke/cluster.yaml \
     --gopath /tmp --git-provider=github \
