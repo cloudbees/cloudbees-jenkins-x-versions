@@ -71,4 +71,5 @@ jx step bdd \
     --tests test-verify-pods \
     --tests test-create-spring \
     --tests test-supported-quickstarts \
-    --tests test-import
+    --tests test-import \
+    --tests test-devpod
