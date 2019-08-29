@@ -8,6 +8,8 @@ approvers:
 - daveconde
 - warrenbailey
 - cagiti
+- abayer
+- macox
 reviewers:
 - rawlingsj
 - jstrachan
@@ -18,3 +20,5 @@ reviewers:
 - daveconde
 - warrenbailey
 - cagiti
+- abayer
+- macox

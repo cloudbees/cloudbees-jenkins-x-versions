@@ -1,0 +1,20 @@
+buildPack: none
+pipelineConfig:
+  pipelines:
+    release:
+      pipeline:
+        agent:
+          image: gcr.io/jenkinsxio/builder-jx:0.1.610
+        stages:
+          - name: changelog
+            steps:
+              - name: changelog
+                command: jx
+                args:
+                - step
+                - changelog
+                - --verbose
+                - --version
+                - ${VERSION}
+                - --rev
+                - ${PULL_BASE_SHA}
