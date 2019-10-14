@@ -1,6 +1,6 @@
 cluster:
   clusterName: ""
-  environmentGitOwner: cb-kubecd
+  environmentGitOwner: jenkins-x-bot-test
   environmentGitPublic: true
   project: jenkins-x-bdd3
   provider: gke
