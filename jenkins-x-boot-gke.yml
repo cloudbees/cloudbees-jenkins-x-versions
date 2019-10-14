@@ -8,6 +8,8 @@ pipelineConfig:
             value: /secrets/bdd/sa.json
           - name: GOOGLE_APPLICATION_CREDENTIALS
             value: /secrets/bdd/sa.json
+          - name: JX_REQUIREMENT_VAULT_DISABLE_URL_DISCOVERY
+            value: "true"
           - name: GH_ACCESS_TOKEN 
             valueFrom:
               secretKeyRef:
@@ -19,7 +21,7 @@ pipelineConfig:
                 name: test-jenkins-user 
                 key: password
         agent:
-          image: gcr.io/jenkinsxio/builder-go-maven:0.1.760
+          image: gcr.io/jenkinsxio/builder-go-maven:2.0.861-216
         stages:
           - name: ci
             options:
@@ -39,7 +41,7 @@ pipelineConfig:
                 name: runci
 
               - name: generate-report
-                image: gcr.io/jenkinsxio/builder-nodejs10x:0.1.760
+                image: gcr.io/jenkinsxio/builder-nodejs10x:2.0.861-216
                 command: jx
                 args:
                   - step

@@ -4,6 +4,8 @@ pipelineConfig:
     pullRequest:
       pipeline:
         environment:
+          - name: JX_REQUIREMENT_VAULT_DISABLE_URL_DISCOVERY
+            value: "true"
           - name: DOMAIN_ROTATION
             value: "true"
           - name: DOMAIN_PREFIX
@@ -25,7 +27,7 @@ pipelineConfig:
                 name: test-jenkins-user 
                 key: password
         agent:
-          image: gcr.io/jenkinsxio/builder-go-maven:0.1.760
+          image: gcr.io/jenkinsxio/builder-go-maven:2.0.861-216
         stages:
           - name: ci
             options:
@@ -45,7 +47,7 @@ pipelineConfig:
                 name: runci
 
               - name: generate-report
-                image: gcr.io/jenkinsxio/builder-nodejs10x:0.1.760
+                image: gcr.io/jenkinsxio/builder-nodejs10x:2.0.861-216
                 command: jx
                 args:
                   - step
