@@ -1,6 +1,7 @@
 cluster:
   clusterName: ""
-  environmentGitOwner: cb-kubecd
+  environmentGitOwner: cloudcat-meow
+  environmentGitPublic: true
   project: jenkins-x-bdd3
   provider: gke
   zone: europe-west1-c
