@@ -78,5 +78,6 @@ jx step bdd \
     --tests install \
     --tests test-verify-pods \
     --tests test-create-spring \
-    --tests test-supported-quickstarts 
+    --tests test-supported-quickstarts \
+    --tests test-app-lifecycle
     # --tests test-import # fails with vault
