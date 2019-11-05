@@ -11,16 +11,24 @@ environments:
   - key: staging
     owner: ""
     repository: ""
+    ingress:
+      tls:
+        enabled: false
   - key: production
     owner: ""
     repository: ""
+    ingress:
+      tls:
+        enabled: false
+gitops: false
 ingress:
-  domain: ""
-  externalDNS: false
+  domain: boot.bdd.jenkins-x.rocks
+  externalDNS: true
+  namespaceSubDomain: -jx.
   tls:
-    email: ""
-    enabled: false
-    production: false
+    email: jenkins-x@googlegroups.com
+    enabled: true
+    production: true
 kaniko: true
 repository: nexus
 secretStorage: vault
@@ -33,5 +41,7 @@ storage:
     url: "gs://jx-bdd-log-store3"
 vault:
   disableURLDiscovery: true
+versionStream:
+  ref: "master"
+  url: https://github.com/jenkins-x/jenkins-x-versions.git
 webhook: prow
-
