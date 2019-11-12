@@ -9,8 +9,6 @@ approvers:
 - cagiti
 - abayer
 - macox
-- dgozalo
-- hferentschik
 reviewers:
 - rawlingsj
 - jstrachan
@@ -22,5 +20,3 @@ reviewers:
 - cagiti
 - abayer
 - macox
-- dgozalo
-- hferentschik
