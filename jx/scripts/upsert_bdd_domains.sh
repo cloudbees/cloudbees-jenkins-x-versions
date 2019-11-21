@@ -2,7 +2,8 @@
 
 BDD_PROJECT="jenkins-x-bdd3"
 PARENT_PROJECT="jenkins-x-rocks"
-PREFIXES=("cjxd1" "cjxd2" "cjxd3" "cjxd4" "cjxd5" "cjxd6" "cjxd7" "cjxd8" "cjxd9" "cjxd10" "cjxd11" "cjxd12")
+PREFIXES=("boot1" "boot2" "boot3" "boot4" "boot5" "boot6" "boot7" "boot8" "boot9" "boot10" "boot11" "boot12" 
+    "boot13" "boot14" "boot15" "boot16" "boot17" "boot18" "boot19" "boot20" "boot21" "boot22" "boot23" "boot24")
 SUBDOMAIN="bdd.jenkins-x.rocks"
 
 function does_subdomain_exist()
@@ -18,28 +19,10 @@ function get_domain_nameservers()
   gcloud dns managed-zones --project=$project list --filter=$domain --format=json | jq .[].nameServers
 }
 
-function get_recordset_nameservers()
-{
-  #TODO
-  echo "TODO"
-}
-
 function create_subdomain()
 {
   local domain=$1
   gcloud dns managed-zones --project=$BDD_PROJECT create "${domain//\./-}" --dns-name "${domain}." --description="managed-zone for bdd tests"
-}
-
-function create_recordset_ns_entry()
-{
-  #TODO
-  echo "TODO"
-}
-
-function create_managed_zone()
-{
-  #TODO
-  echo "TODO"
 }
 
 for prefix in "${PREFIXES[@]}"
@@ -51,10 +34,11 @@ do
   then
     create_subdomain "${domain}"
     echo "$domain created"
+    child_nameservers="$(get_domain_nameservers "${domain}" "${BDD_PROJECT}")"
+    echo "${child_nameservers}"
   else
     echo "$domain exists"
     child_nameservers="$(get_domain_nameservers "${domain}" "${BDD_PROJECT}")"
-    parent_nameservers="$(get_recordset_nameservers "${domain}" "${PARENT_PROJECT}")"
     echo "${child_nameservers}"
   fi
 done
