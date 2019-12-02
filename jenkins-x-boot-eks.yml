@@ -30,7 +30,7 @@ pipelineConfig:
               - name: aws-credentials
                 mountPath: /builder/home/.aws/
         agent:
-          image: docker.io/dgozalo/jx-test-images:pipeline_builder25
+          image: docker.io/dgozalo/jx-test-images:pipeline_builder26
         stages:
           - name: ci
             options:
