@@ -22,12 +22,12 @@ pipelineConfig:
                 key: password
         options:
           volumes:
-          - name: aws_credentials
+          - name: aws-credentials
             secret:
               secretName: aws-bdd-user-creds
           containerOptions:
             volumeMounts:
-              - name: aws_credentials
+              - name: aws-credentials
               - mountPath: /builder/home/.aws/
         agent:
           image: gcr.io/jenkinsxio/builder-go-maven:2.0.881-233
