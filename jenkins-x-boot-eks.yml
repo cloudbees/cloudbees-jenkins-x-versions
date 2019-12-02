@@ -46,7 +46,7 @@ pipelineConfig:
                   - mountPath: /secrets
                     name: sa
             steps:
-              - command: jx/bdd/boot-gke/ci.sh
+              - command: jx/bdd/boot-eks/ci.sh
                 name: runci
 
               - name: generate-report
@@ -62,13 +62,13 @@ pipelineConfig:
                   - --out-dir
                   - /workspace/source/reports
                   - --output-name
-                  - bdd_boot_gke_report.html
+                  - bdd_boot_eks_report.html
                   - --suite-name
-                  - "GKE_Boot_BDD_Tests"
+                  - "EKS_Boot_BDD_Tests"
             
               - name: stash_report
-                command: jx/bdd/boot-gke/report.sh
+                command: jx/bdd/boot-eks/report.sh
                 args:
                   - "/workspace/source/reports"
-                  - "/workspace/source/reports/bdd_boot_gke_report.html"
+                  - "/workspace/source/reports/bdd_boot_eks_report.html"
 
