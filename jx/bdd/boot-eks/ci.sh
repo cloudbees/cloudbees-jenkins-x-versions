@@ -51,9 +51,9 @@ cd boot-source
 
 JX_DOWNLOAD_LOCATION=$(<../jx/CJXD_LOCATION_LINUX)
 
-wget $JX_DOWNLOAD_LOCATION
-tar -zxvf jx-linux-amd64.tar.gz
-export PATH=$(pwd):$PATH
+#wget $JX_DOWNLOAD_LOCATION
+#tar -zxvf jx-linux-amd64.tar.gz
+#export PATH=$(pwd):$PATH
 
 
 # use the current git SHA being built in the version stream
