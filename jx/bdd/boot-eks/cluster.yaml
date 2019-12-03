@@ -8,6 +8,7 @@ clusters:
       - --zones=us-east-1a,us-east-1b
       - --skip-installation
       - --nodes=3
+      - --node-type=m5.xlarge
       - --verbose
     commands:
       - command: jx
