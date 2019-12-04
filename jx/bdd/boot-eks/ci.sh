@@ -80,6 +80,8 @@ jx step bdd \
     --git-provider=github \
     --config ../jx/bdd/boot-eks/cluster.yaml \
     --git-username $GH_USERNAME \
+    --test-git-repo=https://github.com/dgozalo/bdd-jx.git \
+    --test-git-branch=feature/disable_jenkins-x_file_import_for_EKS \
     --git-owner $GH_OWNER \
     --git-api-token $GH_ACCESS_TOKEN \
     --default-admin-password $JENKINS_PASSWORD \
