@@ -56,10 +56,6 @@ pipelineConfig:
                   - mountPath: /secrets
                     name: sa
             steps:
-              - name: sleep
-                command: sleep
-                args:
-                  - 1h 
               - command: jx/bdd/boot-eks/ci.sh
                 name: runci
 
