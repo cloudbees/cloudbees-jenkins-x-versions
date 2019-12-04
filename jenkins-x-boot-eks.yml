@@ -20,16 +20,6 @@ pipelineConfig:
               secretKeyRef:
                 name: test-jenkins-user 
                 key: password
-          - name: AWS_ACCESS_KEY_ID
-            valueFrom:
-             secretKeyRef:
-               name: aws-bdd-user-creds
-               key: access-key-id
-          - name: AWS_SECRET_ACCESS_KEY
-            valueFrom:
-             secretKeyRef:
-               name: aws-bdd-user-creds
-               key: secret-access-key
           - name: VAULT_AWS_ACCESS_KEY_ID
             valueFrom:
               secretKeyRef:
@@ -40,6 +30,15 @@ pipelineConfig:
              secretKeyRef:
                name: aws-bdd-user-creds
                key: secret-access-key
+        options:
+          volumes:
+          - name: aws-credentials
+            secret:
+              secretName: aws-bdd-user-creds
+          containerOptions:
+            volumeMounts:
+              - name: aws-credentials
+                mountPath: /builder/home/.aws/
         agent:
           image: docker.io/dgozalo/jx-test-images:pipeline_builder31
         stages:
