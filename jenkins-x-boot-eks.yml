@@ -13,12 +13,12 @@ pipelineConfig:
           - name: GH_ACCESS_TOKEN 
             valueFrom:
               secretKeyRef:
-                name: jenkins-x-bot-test-github
+                name: cjxd-bot-test-github
                 key: password
           - name: JENKINS_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: test-jenkins-user 
+                name: test-jenkins-user
                 key: password
           - name: VAULT_AWS_ACCESS_KEY_ID
             valueFrom:
