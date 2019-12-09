@@ -18,6 +18,7 @@ environments:
   repository: ""
 ingress:
   domain: ""
+  ignoreLoadBalancer: true
   externalDNS: false
   tls:
     email: ""
