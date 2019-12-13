@@ -1,0 +1,92 @@
+buildPack: none
+pipelineConfig:
+  pipelines:
+    pullRequest:
+      pipeline:
+        environment:
+          - name: GKE_SA
+            value: /secrets/bdd/sa.json
+          - name: GOOGLE_APPLICATION_CREDENTIALS
+            value: /secrets/bdd/sa.json
+          - name: JX_REQUIREMENT_VAULT_DISABLE_URL_DISCOVERY
+            value: "true"
+          - name: GKE_SA
+            value: /secrets/bdd/sa.json
+          - name: GOOGLE_APPLICATION_CREDENTIALS
+            value: /secrets/bdd/sa.json
+          - name: GH_ACCESS_TOKEN 
+            valueFrom:
+              secretKeyRef:
+                name: cjxd-bot-test-github
+                key: password
+          - name: JENKINS_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: test-jenkins-user
+                key: password
+          - name: AWS_REGION
+            value: "us-east-1"
+          - name: VAULT_AWS_ACCESS_KEY_ID
+            valueFrom:
+              secretKeyRef:
+                name: aws-bdd-user-creds
+                key: access-key-id
+          - name: VAULT_AWS_SECRET_ACCESS_KEY
+            valueFrom:
+             secretKeyRef:
+               name: aws-bdd-user-creds
+               key: secret-access-key
+          - name: AWS_ACCESS_KEY_ID
+            valueFrom:
+              secretKeyRef:
+                name: aws-bdd-user-creds
+                key: access-key-id
+          - name: AWS_SECRET_ACCESS_KEY
+            valueFrom:
+             secretKeyRef:
+               name: aws-bdd-user-creds
+               key: secret-access-key
+        agent:
+          image: docker.io/dgozalo/jx-test-images:pipeline_builder48
+        stages:
+          - name: ci
+            options:
+              volumes:
+                - name: sa
+                  secret:
+                    secretName: bdd-secret
+                    items:
+                      - key: bdd-credentials.json
+                        path: bdd/sa.json
+              containerOptions:
+                volumeMounts:
+                  - mountPath: /secrets
+                    name: sa
+                  
+            steps:
+              - command: jx/bdd/boot-eks/ci.sh
+                name: runci
+
+              - name: generate-report
+                image: gcr.io/jenkinsxio/builder-nodejs10x:2.0.881-233
+                command: jx
+                args:
+                  - step
+                  - report
+                  - junit
+                  - --in-dir
+                  - /workspace/source/reports
+                  - --merge
+                  - --out-dir
+                  - /workspace/source/reports
+                  - --output-name
+                  - bdd_boot_eks_report.html
+                  - --suite-name
+                  - "EKS_Boot_BDD_Tests"
+            
+              - name: stash_report
+                command: jx/bdd/boot-eks/report.sh
+                args:
+                  - "/workspace/source/reports"
+                  - "/workspace/source/reports/bdd_boot_eks_report.html"
+
