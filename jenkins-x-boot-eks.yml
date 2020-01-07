@@ -63,13 +63,13 @@ pipelineConfig:
                     secretName: aws-bdd-user-creds
                     items:
                       - key: credentials
-                        path: /builder/home/.aws/credentials
+                        path: credentials
               containerOptions:
                 volumeMounts:
                   - mountPath: /secrets
                     name: sa
                 volumeMounts:
-                  - mountPath: /credentials
+                  - mountPath: /builder/home/.aws
                     name: bdd-aws
                   
             steps:
