@@ -47,7 +47,7 @@ pipelineConfig:
                name: aws-bdd-user-creds
                key: secret-access-key
         agent:
-          image: docker.io/dgozalo/jx-test-images:pipeline_builder52
+          image: docker.io/dgozalo/jx-test-images:pipeline_builder54
         stages:
           - name: ci
             options:
