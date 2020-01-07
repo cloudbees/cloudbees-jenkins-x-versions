@@ -68,7 +68,6 @@ pipelineConfig:
                 volumeMounts:
                   - mountPath: /secrets
                     name: sa
-                volumeMounts:
                   - mountPath: /builder/home/.aws
                     name: bdd-aws
                   
