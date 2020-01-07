@@ -19,7 +19,7 @@ pipelineConfig:
           - name: GH_ACCESS_TOKEN 
             valueFrom:
               secretKeyRef:
-                name: jenkins-x-bot-test-github
+                name: cjxd-bot-test-github
                 key: password
           - name: JENKINS_PASSWORD
             valueFrom:
@@ -27,7 +27,7 @@ pipelineConfig:
                 name: test-jenkins-user 
                 key: password
         agent:
-          image: gcr.io/jenkinsxio/builder-go-maven:2.0.861-216
+          image: gcr.io/jenkinsxio/builder-go-maven:2.0.881-233
         stages:
           - name: ci
             options:
@@ -47,7 +47,7 @@ pipelineConfig:
                 name: runci
 
               - name: generate-report
-                image: gcr.io/jenkinsxio/builder-nodejs10x:2.0.861-216
+                image: gcr.io/jenkinsxio/builder-nodejs10x:2.0.881-233
                 command: jx
                 args:
                   - step

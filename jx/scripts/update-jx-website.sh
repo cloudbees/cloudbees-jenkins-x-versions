@@ -20,8 +20,8 @@ then
         git add *
         git commit --allow-empty -a -m "updated jx commands & API docs from $JX_VERSION"
         
-        # this seems to cause rebase errors due to removed old site dir
-        #git fetch origin && git rebase origin/master
+        # Note that when doing a rebase theirs and ours are swapped so -X theirs actually automatically accepts our changes in case of conflict
+        git fetch origin && git rebase -X theirs origin/master
       popd
 
       echo "Updating the JSON Schema"
@@ -33,26 +33,31 @@ then
         git add *
         git commit --allow-empty -a -m "updated jx Json Schema from $JX_VERSION"
         
-        # this seems to cause rebase errors due to removed old site dir
-        #git fetch origin && git rebase origin/master
+        # Note that when doing a rebase theirs and ours are swapped so -X theirs actually automatically accepts our changes in case of conflict
+        git fetch origin && git rebase -X theirs origin/master
       popd
 
       echo "Updating the JX CLI & API reference docs"
 
+      mkdir -p ${GOPATH}/src/github.com/jenkins-x
+      pushd ${GOPATH}/src/github.com/jenkins-x
       git clone https://github.com/jenkins-x/jx.git
       pushd jx
         git fetch --tags
         git checkout v${JX_VERSION}
-        make generate-docs
+          # make generate-refdocs needs go modules enabled. The long term solution is probably to turn it on in jx's makefile, but for the moment...
+          GO111MODULE=on make generate-refdocs
+        popd
       popd
-      cp -r jx/docs/apidocs/site/* jx-docs/static/apidocs
+      cp ${GOPATH}/src/github.com/jenkins-x/jx/docs/apidocs.md jx-docs/content/en/docs/reference/api.md
+      cp ${GOPATH}/src/github.com/jenkins-x/jx/docs/config.md jx-docs/content/en/docs/reference/config
 
-      pushd jx-docs/static/apidocs
+      pushd jx-docs/content/en/docs/reference
         git add *
         git commit --allow-empty -a -m "updated jx API docs from $JX_VERSION"
 
-        # this seems to cause rebase errors due to removed old site dir
-        #git fetch origin && git rebase origin/master
+        # Note that when doing a rebase theirs and ours are swapped so -X theirs actually automatically accepts our changes in case of conflict
+        git fetch origin && git rebase -X theirs origin/master
       popd
 
       pushd jx-docs

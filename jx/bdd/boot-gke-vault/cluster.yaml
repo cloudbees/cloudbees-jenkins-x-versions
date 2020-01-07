@@ -16,3 +16,5 @@ clusters:
         args:
           - boot
           - -b
+          - -r
+          - jx-requirements.yml

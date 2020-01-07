@@ -1,0 +1,51 @@
+buildPack: none
+pipelineConfig:
+  pipelines:
+    pullRequest:
+      pipeline:
+        environment:
+          - name: GKE_SA
+            value: /secrets/bdd/sa.json
+          - name: GOOGLE_APPLICATION_CREDENTIALS
+            value: /secrets/bdd/sa.json
+          - name: JX_REQUIREMENT_VAULT_DISABLE_URL_DISCOVERY
+            value: "true"
+          - name: GH_ACCESS_TOKEN 
+            valueFrom:
+              secretKeyRef:
+                name: cjxd-bot-test-github
+                key: password
+          - name: JENKINS_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: test-jenkins-user 
+                key: password
+        agent:
+          image: gcr.io/jenkinsxio/builder-go-maven:2.0.881-233
+        stages:
+          - name: ci
+            options:
+              volumes:
+                - name: sa
+                  secret:
+                    secretName: bdd-secret
+                    items:
+                      - key: bdd-credentials.json
+                        path: bdd/sa.json
+              containerOptions:
+                volumeMounts:
+                  - mountPath: /secrets
+                    name: sa
+            steps:
+              - env:
+                  - name: REPORT_IN_DIR
+                    value: /workspace/source/reports
+                  - name: REPORT_OUT_DIR
+                    value: /workspace/source/reports
+                  - name: REPORT_OUTPUT_NAME
+                    value: bdd_boot_gke_jxui_report_${inputs.params.version}.html
+                  - name: REPORT_SUITE_NAME
+                    value: GKE_Boot_UI_BDD_Tests
+                command: jx/bdd/boot-gke-jxui/ci.sh
+                image: gcr.io/jenkinsxio/builder-go-nodejs:2.0.993-322
+                name: runci
