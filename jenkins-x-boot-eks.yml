@@ -47,7 +47,7 @@ pipelineConfig:
                name: aws-bdd-user-creds
                key: secret-access-key
         agent:
-          image: gcr.io/jenkinsxio/builder-go-maven:2.0.881-233
+          image: docker.io/dgozalo/jx-test-images:pipeline_builder50
         stages:
           - name: ci
             options:
