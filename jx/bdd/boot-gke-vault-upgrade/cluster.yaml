@@ -11,6 +11,7 @@ clusters:
       - -z=europe-west1-c
       - --skip-login
       - --skip-installation
+      - --service-account=
     commands:
       - command: jx
         args:

@@ -9,7 +9,7 @@ pipelineConfig:
           - name: DOMAIN_ROTATION
             value: "true"
           - name: DOMAIN_PREFIX
-            value: "cjxd"
+            value: "cjxdu"
           - name: DOMAIN_SUFFIX
             value: ".bdd.jenkins-x.rocks"
           - name: GKE_SA

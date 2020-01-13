@@ -14,16 +14,23 @@ environments:
   - key: staging
     owner: ""
     repository: ""
+    ingress:
+      tls:
+        enabled: false
   - key: production
     owner: ""
     repository: ""
+    ingress:
+      tls:
+        enabled: false
 ingress:
-  domain: ""
-  externalDNS: false
+  domain: cjxdu1.bdd.jenkins-x.rocks
+  externalDNS: true
+  namespaceSubDomain: -jx.
   tls:
-    email: ""
-    enabled: false
-    production: false
+    email: jenkins-x@googlegroups.com
+    enabled: true
+    production: true
 kaniko: true
 secretStorage: vault
 storage:
