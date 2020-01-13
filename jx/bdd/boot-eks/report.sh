@@ -14,11 +14,7 @@ DATE=$(date '+%F')
 gcloud auth activate-service-account --key-file $GKE_SA
 
 mkdir $1
-t=$(pwd)
-echo $t
-cd $1
-echo "test" > bdd_boot_eks_report.html
-cd t
+echo "test" > /workspace/source/reports/bdd_boot_eks_report.html
 
 jx step stash \
     -c tests \
