@@ -84,6 +84,9 @@ pipelineConfig:
                   - --suite-name
                   - "EKS_Boot_BDD_Tests"
             
+              - name: clear-kubeconfig
+                command: rm ~/.kube/config
+
               - name: stash_report
                 command: jx/bdd/boot-eks/report.sh
                 args:

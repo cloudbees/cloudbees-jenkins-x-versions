@@ -57,10 +57,9 @@ cd boot-source
 
 JX_DOWNLOAD_LOCATION=$(<../jx/CJXD_LOCATION_LINUX)
 
-#wget $JX_DOWNLOAD_LOCATION
-#tar -zxvf jx-linux-amd64.tar.gz
-#export PATH=$(pwd):$PATH
-
+wget $JX_DOWNLOAD_LOCATION
+tar -zxvf jx-linux-amd64.tar.gz
+export PATH=$(pwd):$PATH
 
 # use the current git SHA being built in the version stream
 if [[ -n "${PULL_PULL_SHA}" ]]; then
@@ -78,6 +77,11 @@ mkdir /workspace/source/reports
 export REPORTS_DIR=/workspace/source/reports
 
 export EKS_BDD_RUN=true
+
+#install aws-iam-authenticator here as we don't want to add it to our base images
+curl -o aws-iam-authenticator https://amazon-eks.s3-us-west-2.amazonaws.com/1.14.6/2019-08-22/bin/linux/amd64/aws-iam-authenticator && \
+  chmod +x ./aws-iam-authenticator && \
+  mv aws-iam-authenticator /usr/local/bin/
 
 jx step bdd \
     --use-revision \
