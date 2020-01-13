@@ -13,6 +13,7 @@ DATE=$(date '+%F')
 # activate the GCP service account before uploading the report
 gcloud auth activate-service-account --key-file $GKE_SA
 
+mkdir $1
 t=$(pwd)
 echo $t
 cd $1
