@@ -72,26 +72,6 @@ pipelineConfig:
                     name: bdd-aws
                   
             steps:
-              - command: jx/bdd/boot-eks/ci.sh
-                name: runci
-
-              - name: generate-report
-                image: gcr.io/jenkinsxio/builder-nodejs10x:2.0.1113-450
-                command: jx
-                args:
-                  - step
-                  - report
-                  - junit
-                  - --in-dir
-                  - /workspace/source/reports
-                  - --merge
-                  - --out-dir
-                  - /workspace/source/reports
-                  - --output-name
-                  - bdd_boot_eks_report.html
-                  - --suite-name
-                  - "EKS_Boot_BDD_Tests"
-            
               - name: stash_report
                 command: jx/bdd/boot-eks/report.sh
                 args:
