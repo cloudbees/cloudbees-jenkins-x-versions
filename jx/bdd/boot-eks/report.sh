@@ -13,9 +13,6 @@ DATE=$(date '+%F')
 # activate the GCP service account before uploading the report
 gcloud auth activate-service-account --key-file $GKE_SA
 
-mkdir $1
-echo "test" > /workspace/source/reports/bdd_boot_eks_report.html
-
 jx step stash \
     -c tests \
     --basedir "${BASEDIR}" \
