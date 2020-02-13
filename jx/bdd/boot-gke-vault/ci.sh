@@ -86,6 +86,7 @@ helm init --client-only
 helm repo add jenkins-x https://storage.googleapis.com/chartmuseum.jenkins-x.io
 
 jx step bdd \
+    --test-git-repo https://github.com/abayer/bdd-jx.git \
     --use-revision \
     --version-repo-pr \
     --versions-repo https://github.com/cloudbees/cloudbees-jenkins-x-versions.git \
@@ -100,6 +101,5 @@ jx step bdd \
     --no-delete-repo \
     --tests install \
     --tests test-verify-pods \
-    --tests test-create-spring \
-    --tests test-supported-quickstarts
+    --tests test-quickstart-golang-http
     # --tests test-import # fails with vault
