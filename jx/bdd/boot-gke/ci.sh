@@ -77,6 +77,7 @@ export REPORTS_DIR=/workspace/source/reports
 
 
 jx step bdd \
+    --test-git-repo https://github.com/abayer/bdd-jx.git \
     --use-revision \
     --version-repo-pr \
     --versions-repo https://github.com/cloudbees/cloudbees-jenkins-x-versions.git \
@@ -91,7 +92,4 @@ jx step bdd \
     --no-delete-repo \
     --tests install \
     --tests test-verify-pods \
-    --tests test-create-spring \
-    --tests test-supported-quickstarts \
-    --tests test-import \
-    --tests test-app-lifecycle
+    --tests test-quickstart-golang-http

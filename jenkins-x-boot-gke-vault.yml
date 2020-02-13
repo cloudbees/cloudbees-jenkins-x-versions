@@ -43,28 +43,4 @@ pipelineConfig:
                   - mountPath: /secrets
                     name: sa
             steps:
-              - command: jx/bdd/boot-gke-vault/ci.sh
-                name: runci
-
-              - name: generate-report
-                command: jx
-                args:
-                  - step
-                  - report
-                  - junit
-                  - --in-dir
-                  - /workspace/source/reports
-                  - --merge
-                  - --out-dir
-                  - /workspace/source/reports
-                  - --output-name
-                  - bdd_boot_gke_vault_report.html
-                  - --suite-name
-                  - "GKE_Boot_Vault_BDD_Tests"
-            
-              - name: stash_report
-                command: jx/bdd/boot-gke-vault/report.sh
-                args:
-                  - "/workspace/source/reports"
-                  - "/workspace/source/reports/bdd_boot_gke_vault_report.html"
-
+              - command: echo "bye"

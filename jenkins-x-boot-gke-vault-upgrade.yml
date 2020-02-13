@@ -43,29 +43,4 @@ pipelineConfig:
                   - mountPath: /secrets
                     name: sa
             steps:
-              - command: jx/bdd/boot-gke-vault-upgrade/ci.sh
-                name: runci
-
-              - name: generate-report
-                image: gcr.io/jenkinsxio/builder-nodejs10x:2.0.881-233
-                command: jx
-                args:
-                  - step
-                  - report
-                  - junit
-                  - --in-dir
-                  - /workspace/source/reports
-                  - --merge
-                  - --out-dir
-                  - /workspace/source/reports
-                  - --output-name
-                  - bdd_boot_gke_vault_upgrade_report.html
-                  - --suite-name
-                  - "GKE_Boot_Vault_Upgrade_BDD_Tests"
-            
-              - name: stash_report
-                command: jx/bdd/boot-gke-vault-upgrade/report.sh
-                args:
-                  - "/workspace/source/reports"
-                  - "/workspace/source/reports/bdd_boot_gke_vault_upgrade_report.html"
-
+              - command: echo "bye"
