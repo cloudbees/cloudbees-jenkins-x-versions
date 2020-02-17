@@ -70,9 +70,16 @@ echo "Upgrading using binary from $JX_DOWNLOAD_LOCATION"
 
 sed -i "/^ *versionStream:/,/^ *[^:]*:/s/ref: .*/ref: master/" ../jx/bdd/boot-gke-vault-upgrade/jx-requirements.yml
 
-# Rotate the domain to avoid cert-manager API rate limit
+# Rotate the domain to avoid cert-manager API rate limit and collisions by combining minute and day of year to generate
+# a number between 1 and 12 that will effectively rotate every 12 minutes from a different starting point every 12 days.
 if [[ "${DOMAIN_ROTATION}" == "true" ]]; then
-    SHARD=$(date +"%l" | xargs)
+    MIN=$(date +"%-M" | xargs)
+    DOY=$(date +"%-j" | xargs)
+    SHARD=$(((MIN + DOY) % 12))
+    # If we end up at 0, then roll back over to 12.
+    if [[ $SHARD -eq 0 ]]; then
+        SHARD=12
+    fi
     DOMAIN="${DOMAIN_PREFIX}${SHARD}${DOMAIN_SUFFIX}"
     if [[ -z "${DOMAIN}" ]]; then
         echo "Domain rotation enabled. Please set DOMAIN_PREFIX and DOMAIN_SUFFIX environment variables"
