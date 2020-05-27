@@ -467,3 +467,9 @@ dependencies:
   url: https://github.com/jenkins-x-labs/jxl
   version: 0.0.99
   versionURL: https://github.com/jenkins-x-labs/jxl/releases/tag/v0.0.99
+- host: github.com
+  owner: cloudbees
+  repo: jx-app-ui
+  url: https://github.com/cloudbees/jx-app-ui
+  version: 0.1.138
+  versionURL: https://github.com/cloudbees/jx-app-ui/releases/tag/v0.1.138
