@@ -53,5 +53,5 @@ jx step bdd \
     --tests test-upgrade-ingress \
     --tests test-app-lifecycle \
     --tests test-create-spring \
-    --tests test-quickstart-golang-http \
-    --tests test-import
+    --tests test-quickstart-node-http \
+    --tests test-import-golang-http-from-jenkins-x-yml

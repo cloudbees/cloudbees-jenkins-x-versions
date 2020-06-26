@@ -95,6 +95,6 @@ jx step bdd \
     --tests install \
     --tests test-verify-pods \
     --tests test-create-spring \
-    --tests test-supported-quickstarts \
-    --tests test-import \
+    --tests test-quickstart-spring-boot-http-gradle \
+    --tests test-import-golang-http-from-jenkins-x-yml \
     --tests test-app-lifecycle

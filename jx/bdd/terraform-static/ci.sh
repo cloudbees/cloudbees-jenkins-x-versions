@@ -54,4 +54,4 @@ jx step bdd \
     --tests test-app-lifecycle \
     --tests test-create-spring \
     --tests test-quickstart-golang-http \
-    --tests test-import
+    --tests test-import-spring-boot-http-gradle
